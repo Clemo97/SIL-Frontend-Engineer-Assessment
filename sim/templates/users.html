@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+    </head>
+    <body>
+    <div hx-ext="client-side-templates">
+        <button hx-get="https://jsonplaceholder.typicode.com/albums?userId=1"
+                hx-swap="innerHTML"
+                hx-target="#content"
+                
+                mustache-array-template="foo">
+        Click Me
+        </button>
+
+        <button hx-get="https://jsonplaceholder.typicode.com/albums?userId=2"
+                hx-swap="innerHTML"
+                hx-target="#content"
+                mustache-array-template="foo">
+        Click Me 2
+        </button>
+
+        <p id="content">Start</p>
+
+        <template id="foo">
+        {{#data}}
+        <p> {{userId}} at {{id}} is with {{title}}</p>
+        <li><b>User Id:</b> {{ userId }}</li>
+        <li><b>ID: </b>{{ id }}</li>
+        <li><b>Title:</b> {{ title }}</li>
+        {{/data}}
+        </template>
+    </div>
+</body>
+</html>
